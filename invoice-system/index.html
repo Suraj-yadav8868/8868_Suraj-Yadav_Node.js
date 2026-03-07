@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>INVOICE</h1>
+    
+    <div class="form-section">
+        <h2>ADD ITEM</h2>
+        <div class="input-row">
+            <input type="text" id="itemName" placeholder="Item Name" required>
+            <div class="qty-group">
+                <input type="number" id="qty" placeholder="Qty" min="1" required>
+                <select id="qtyUnit">
+                    <option value="nos">Nos</option>
+                    <option value="kg">Kg</option>
+                    <option value="gm">Gm</option>
+                    <option value="liter">Liter</option>
+                    <option value="ml">Ml</option>
+                    <option value="packet">Packet</option>
+                    <option value="box">Box</option>
+                    <option value="dozen">Dozen</option>
+                    <option value="qt">Qt</option>
+                </select>
+            </div>
+            <input type="number" id="price" placeholder="Price" min="0.01" step="0.01" required>
+            <input type="number" id="discount" placeholder="Disc%" value="0" min="0" max="100">
+        </div>
+        <div class="input-row">
+            <input type="number" id="taxRate" placeholder="Tax %" value="10" min="0">
+            <button onclick="addItem()">+ ADD</button>
+            <button onclick="resetInvoice()">RESET</button>
+            <button onclick="printInvoice()">PRINT</button>
+            <button onclick="downloadPDF()">PDF</button>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ITEM</th>
+                <th>QTY</th>
+                <th>PRICE</th>
+                <th>DISC</th>
+                <th>TOTAL</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <div class="summary">
+        <p><strong>Subtotal:</strong> <span id="subtotal">Rs 0.00</span></p>
+        <p><strong>Discount:</strong> <span id="discountTotal">-Rs 0.00</span></p>
+        <p><strong>Tax:</strong> <span id="taxTotal">Rs 0.00</span></p>
+        <p><strong>Grand Total:</strong> <span id="grandTotal">Rs 0.00</span></p>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</body>
+</html>
+
